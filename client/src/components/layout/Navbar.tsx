@@ -44,7 +44,10 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6">
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-white rounded-full px-6"
+              onClick={() => window.open('https://wa.me/5541999999999', '_blank')}
+            >
               Agendar Visita
             </Button>
           </div>
@@ -73,7 +76,10 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button className="w-full bg-primary hover:bg-primary/90 text-white mt-2">
+            <Button 
+              className="w-full bg-primary hover:bg-primary/90 text-white mt-2"
+              onClick={() => window.open('https://wa.me/5541999999999', '_blank')}
+            >
               Agendar Visita
             </Button>
           </div>

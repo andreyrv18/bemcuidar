@@ -56,7 +56,10 @@ export function VisitationInfo() {
             </div>
 
             <div className="mt-10">
-              <Button className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 h-12 text-base shadow-lg hover:shadow-primary/20 transition-all">
+              <Button 
+                className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 h-12 text-base shadow-lg hover:shadow-primary/20 transition-all"
+                onClick={() => window.open('https://wa.me/5541999999999', '_blank')}
+              >
                 Agendar sua visita agora
               </Button>
             </div>

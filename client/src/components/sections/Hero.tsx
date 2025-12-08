@@ -32,7 +32,11 @@ export function Hero() {
               Um ambiente acolhedor e profissional, pensado para proporcionar qualidade de vida, dignidade e felicidade na melhor idade.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-white text-primary hover:bg-accent font-bold text-lg px-8 h-14 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+              <Button 
+                size="lg" 
+                className="bg-white text-primary hover:bg-accent font-bold text-lg px-8 h-14 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+                onClick={() => window.open('https://wa.me/5541999999999', '_blank')}
+              >
                 Agendar uma Visita
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-medium text-lg px-8 h-14 rounded-full backdrop-blur-sm">

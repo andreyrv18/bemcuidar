@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroImage from "@assets/generated_images/welcoming_exterior_of_a_nursing_home_with_a_garden.png";
+import heroImage from "@assets/pixrl_1765195797324.png";
 
 export function Hero() {
   return (

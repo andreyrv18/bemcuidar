@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { FacilitiesCarousel } from "@/components/sections/FacilitiesCarousel";
 import { VisitationInfo } from "@/components/sections/VisitationInfo";
 import { EventsCalendar } from "@/components/sections/EventsCalendar";
+import { Location } from "@/components/sections/Location";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <FacilitiesCarousel />
         <VisitationInfo />
         <EventsCalendar />
+        <Location />
       </main>
       <Footer />
     </div>

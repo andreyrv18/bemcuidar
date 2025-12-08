@@ -11,7 +11,7 @@ export function Navbar() {
     { name: "Início", href: "#home" },
     { name: "Estrutura", href: "#structure" },
     { name: "Visitas", href: "#visitation" },
-    { name: "Planos", href: "#pricing" },
+    { name: "Agenda", href: "#events" },
     { name: "Contato", href: "#contact" },
   ];
 

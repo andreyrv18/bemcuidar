@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { FacilitiesCarousel } from "@/components/sections/FacilitiesCarousel";
 import { VisitationInfo } from "@/components/sections/VisitationInfo";
-import { Pricing } from "@/components/sections/Pricing";
+import { EventsCalendar } from "@/components/sections/EventsCalendar";
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
         </div>
         <FacilitiesCarousel />
         <VisitationInfo />
-        <Pricing />
+        <EventsCalendar />
       </main>
       <Footer />
     </div>

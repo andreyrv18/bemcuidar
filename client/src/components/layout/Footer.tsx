@@ -32,7 +32,7 @@ export function Footer() {
               <li><a href="#home" className="text-muted-foreground hover:text-primary transition-colors text-sm">Início</a></li>
               <li><a href="#structure" className="text-muted-foreground hover:text-primary transition-colors text-sm">Nossa Estrutura</a></li>
               <li><a href="#visitation" className="text-muted-foreground hover:text-primary transition-colors text-sm">Visitação</a></li>
-              <li><a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors text-sm">Planos e Preços</a></li>
+              <li><a href="#events" className="text-muted-foreground hover:text-primary transition-colors text-sm">Agenda de Eventos</a></li>
             </ul>
           </div>
 

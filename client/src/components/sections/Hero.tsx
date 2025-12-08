@@ -4,7 +4,10 @@ import heroImage from "@assets/pixrl_1765195797324.png";
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+    >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -26,20 +29,28 @@ export function Hero() {
               Referência em Cuidado de Idosos em Pinhais
             </span>
             <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
-              Cuidado, Segurança e <span className="text-secondary">Carinho</span> que sua família merece.
+              Cuidado, Segurança e{" "}
+              <span className="text-secondary">Carinho</span> que sua família
+              merece.
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-lg">
-              Um ambiente acolhedor e profissional, pensado para proporcionar qualidade de vida, dignidade e felicidade na melhor idade.
+              Um ambiente acolhedor e profissional, pensado para proporcionar
+              qualidade de vida, dignidade e felicidade na melhor idade.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                className="bg-white text-primary hover:bg-accent font-bold text-lg px-8 h-14 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
-                onClick={() => window.open('https://wa.me/5541999999999', '_blank')}
+              <a href="#contact">
+                <Button
+                  size="lg"
+                  className="bg-white text-primary hover:bg-accent font-bold text-lg px-8 h-14 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+                >
+                  Agendar uma Visita
+                </Button>
+              </a>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 font-medium text-lg px-8 h-14 rounded-full backdrop-blur-sm"
               >
-                Agendar uma Visita
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-medium text-lg px-8 h-14 rounded-full backdrop-blur-sm">
                 Conhecer Estrutura
               </Button>
             </div>
@@ -48,7 +59,7 @@ export function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hidden md:block"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}

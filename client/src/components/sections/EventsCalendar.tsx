@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Calendar as CalendarIcon, Clock, MapPin, Users, Plus, Trash2 } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, MapPin, Users, Plus, Trash2, Lock, LogIn, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -87,6 +87,10 @@ const initialEvents: Event[] = [
 export function EventsCalendar() {
   const [events, setEvents] = useState<Event[]>(initialEvents);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(false);
   
   // Form State
   const [newEvent, setNewEvent] = useState({
@@ -98,6 +102,21 @@ export function EventsCalendar() {
     audience: "",
     description: ""
   });
+
+  const handleLogin = () => {
+    if (password === "admin123") {
+      setIsAdmin(true);
+      setIsLoginOpen(false);
+      setLoginError(false);
+      setPassword("");
+    } else {
+      setLoginError(true);
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAdmin(false);
+  };
 
   const handleAddEvent = () => {
     if (!newEvent.day || !newEvent.title) return;
@@ -148,87 +167,135 @@ export function EventsCalendar() {
             </p>
           </div>
           
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-primary hover:bg-primary/90 text-white rounded-full gap-2 shadow-lg">
-                <Plus size={18} /> Adicionar Evento
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Adicionar Novo Evento</DialogTitle>
-                <DialogDescription>
-                  Insira os detalhes do evento para a agenda deste mês.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="day" className="text-right">Dia</Label>
-                  <Input 
-                    id="day" 
-                    type="number" 
-                    placeholder="DD" 
-                    className="col-span-3" 
-                    value={newEvent.day}
-                    onChange={(e) => setNewEvent({...newEvent, day: e.target.value})}
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="title" className="text-right">Título</Label>
-                  <Input 
-                    id="title" 
-                    placeholder="Nome do evento" 
-                    className="col-span-3"
-                    value={newEvent.title}
-                    onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="time" className="text-right">Horário</Label>
-                  <Input 
-                    id="time" 
-                    placeholder="14:00 - 16:00" 
-                    className="col-span-3"
-                    value={newEvent.time}
-                    onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="location" className="text-right">Local</Label>
-                  <Input 
-                    id="location" 
-                    placeholder="Sala de Atividades" 
-                    className="col-span-3"
-                    value={newEvent.location}
-                    onChange={(e) => setNewEvent({...newEvent, location: e.target.value})}
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="audience" className="text-right">Público</Label>
-                  <Input 
-                    id="audience" 
-                    placeholder="Aberto a todos" 
-                    className="col-span-3"
-                    value={newEvent.audience}
-                    onChange={(e) => setNewEvent({...newEvent, audience: e.target.value})}
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="desc" className="text-right">Desc.</Label>
-                  <Textarea 
-                    id="desc" 
-                    placeholder="Detalhes do evento..." 
-                    className="col-span-3"
-                    value={newEvent.description}
-                    onChange={(e) => setNewEvent({...newEvent, description: e.target.value})}
-                  />
-                </div>
+          <div className="flex gap-2">
+            {!isAdmin ? (
+              <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="border-primary/20 hover:bg-primary/5 rounded-full gap-2">
+                    <Lock size={16} /> Área Administrativa
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[320px]">
+                  <DialogHeader>
+                    <DialogTitle>Acesso Administrativo</DialogTitle>
+                    <DialogDescription>
+                      Digite a senha para gerenciar eventos.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="password">Senha</Label>
+                      <Input 
+                        id="password" 
+                        type="password" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+                      />
+                      {loginError && <p className="text-xs text-destructive">Senha incorreta. Tente novamente.</p>}
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit" onClick={handleLogin}>Entrar</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            ) : (
+              <div className="flex gap-2">
+                <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="bg-primary hover:bg-primary/90 text-white rounded-full gap-2 shadow-lg">
+                      <Plus size={18} /> Adicionar Evento
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Adicionar Novo Evento</DialogTitle>
+                      <DialogDescription>
+                        Insira os detalhes do evento para a agenda deste mês.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="day" className="text-right">Dia</Label>
+                        <Input 
+                          id="day" 
+                          type="number" 
+                          placeholder="DD" 
+                          className="col-span-3" 
+                          value={newEvent.day}
+                          onChange={(e) => setNewEvent({...newEvent, day: e.target.value})}
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="title" className="text-right">Título</Label>
+                        <Input 
+                          id="title" 
+                          placeholder="Nome do evento" 
+                          className="col-span-3"
+                          value={newEvent.title}
+                          onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="time" className="text-right">Horário</Label>
+                        <Input 
+                          id="time" 
+                          placeholder="14:00 - 16:00" 
+                          className="col-span-3"
+                          value={newEvent.time}
+                          onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="location" className="text-right">Local</Label>
+                        <Input 
+                          id="location" 
+                          placeholder="Sala de Atividades" 
+                          className="col-span-3"
+                          value={newEvent.location}
+                          onChange={(e) => setNewEvent({...newEvent, location: e.target.value})}
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="audience" className="text-right">Público</Label>
+                        <Input 
+                          id="audience" 
+                          placeholder="Aberto a todos" 
+                          className="col-span-3"
+                          value={newEvent.audience}
+                          onChange={(e) => setNewEvent({...newEvent, audience: e.target.value})}
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="desc" className="text-right">Desc.</Label>
+                        <Textarea 
+                          id="desc" 
+                          placeholder="Detalhes do evento..." 
+                          className="col-span-3"
+                          value={newEvent.description}
+                          onChange={(e) => setNewEvent({...newEvent, description: e.target.value})}
+                        />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button type="submit" onClick={handleAddEvent}>Salvar Evento</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+                
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  onClick={handleLogout} 
+                  title="Sair do modo administrativo"
+                  className="rounded-full border-destructive/20 text-destructive hover:bg-destructive/10"
+                >
+                  <LogOut size={18} />
+                </Button>
               </div>
-              <DialogFooter>
-                <Button type="submit" onClick={handleAddEvent}>Salvar Evento</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+            )}
+          </div>
         </div>
 
         <div className="grid gap-6">
@@ -254,15 +321,17 @@ export function EventsCalendar() {
                     <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                       {event.title}
                     </h3>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="text-muted-foreground hover:text-destructive -mt-2 -mr-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                      onClick={() => handleDeleteEvent(event.id)}
-                      title="Remover evento"
-                    >
-                      <Trash2 size={18} />
-                    </Button>
+                    {isAdmin && (
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="text-muted-foreground hover:text-destructive -mt-2 -mr-2"
+                        onClick={() => handleDeleteEvent(event.id)}
+                        title="Remover evento"
+                      >
+                        <Trash2 size={18} />
+                      </Button>
+                    )}
                   </div>
                   
                   <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4 text-sm text-muted-foreground">

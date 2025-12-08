@@ -1,5 +1,15 @@
 import { useState } from "react";
-import { Calendar as CalendarIcon, Clock, MapPin, Users, Plus, Trash2, Lock, LogIn, LogOut } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  Clock,
+  MapPin,
+  Users,
+  Plus,
+  Trash2,
+  Lock,
+  LogIn,
+  LogOut,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -23,7 +33,7 @@ interface Event {
   location: string;
   audience: string;
   description: string;
-  type: 'fixed' | 'special';
+  type: "fixed" | "special";
 }
 
 const initialEvents: Event[] = [
@@ -35,8 +45,9 @@ const initialEvents: Event[] = [
     time: "15:00 - 17:00",
     location: "Salão de Festas",
     audience: "Todos os residentes",
-    description: "Celebração dos aniversariantes do mês com bolo, música e muita alegria",
-    type: 'special'
+    description:
+      "Celebração dos aniversariantes do mês com bolo, música e muita alegria",
+    type: "special",
   },
   {
     id: 2,
@@ -47,7 +58,7 @@ const initialEvents: Event[] = [
     location: "Sala de Atividades",
     audience: "Aberto a todos",
     description: "Momento de fé e reflexão espiritual",
-    type: 'fixed'
+    type: "fixed",
   },
   {
     id: 3,
@@ -58,7 +69,7 @@ const initialEvents: Event[] = [
     location: "Sala de Atividades",
     audience: "Aberto a todos",
     description: "Encontro espírita com passes e evangelização",
-    type: 'fixed'
+    type: "fixed",
   },
   {
     id: 4,
@@ -69,7 +80,7 @@ const initialEvents: Event[] = [
     location: "Sala de Atividades",
     audience: "Aberto a todos",
     description: "Momento de fé e reflexão espiritual",
-    type: 'fixed'
+    type: "fixed",
   },
   {
     id: 5,
@@ -80,8 +91,8 @@ const initialEvents: Event[] = [
     location: "Sala de Atividades",
     audience: "Aberto a todos",
     description: "Culto da Igreja Universal do Reino de Deus",
-    type: 'fixed'
-  }
+    type: "fixed",
+  },
 ];
 
 export function EventsCalendar() {
@@ -91,7 +102,7 @@ export function EventsCalendar() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
-  
+
   // Form State
   const [newEvent, setNewEvent] = useState({
     day: "",
@@ -100,11 +111,11 @@ export function EventsCalendar() {
     time: "",
     location: "",
     audience: "",
-    description: ""
+    description: "",
   });
 
   const handleLogin = () => {
-    if (password === "admin123") {
+    if (password === "casabemcuidar2025") {
       setIsAdmin(true);
       setIsLoginOpen(false);
       setLoginError(false);
@@ -123,17 +134,19 @@ export function EventsCalendar() {
 
     const event: Event = {
       id: Date.now(),
-      day: newEvent.day.padStart(2, '0'),
+      day: newEvent.day.padStart(2, "0"),
       month: newEvent.month,
       title: newEvent.title,
       time: newEvent.time,
       location: newEvent.location,
       audience: newEvent.audience,
       description: newEvent.description,
-      type: 'special'
+      type: "special",
     };
 
-    setEvents([...events, event].sort((a, b) => parseInt(a.day) - parseInt(b.day)));
+    setEvents(
+      [...events, event].sort((a, b) => parseInt(a.day) - parseInt(b.day)),
+    );
     setIsOpen(false);
     setNewEvent({
       day: "",
@@ -142,12 +155,12 @@ export function EventsCalendar() {
       time: "",
       location: "",
       audience: "",
-      description: ""
+      description: "",
     });
   };
 
   const handleDeleteEvent = (id: number) => {
-    setEvents(events.filter(e => e.id !== id));
+    setEvents(events.filter((e) => e.id !== id));
   };
 
   return (
@@ -162,16 +175,20 @@ export function EventsCalendar() {
               Agenda de Eventos
             </h2>
             <p className="text-muted-foreground text-lg">
-              Acompanhe nossa programação mensal. Oferecemos atividades religiosas, recreativas e comemorativas 
-              para promover a interação e bem-estar de todos.
+              Acompanhe nossa programação mensal. Oferecemos atividades
+              religiosas, recreativas e comemorativas para promover a interação
+              e bem-estar de todos.
             </p>
           </div>
-          
+
           <div className="flex gap-2">
             {!isAdmin ? (
               <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="border-primary/20 hover:bg-primary/5 rounded-full gap-2">
+                  <Button
+                    variant="outline"
+                    className="border-primary/20 hover:bg-primary/5 rounded-full gap-2"
+                  >
                     <Lock size={16} /> Área Administrativa
                   </Button>
                 </DialogTrigger>
@@ -185,18 +202,24 @@ export function EventsCalendar() {
                   <div className="grid gap-4 py-4">
                     <div className="grid gap-2">
                       <Label htmlFor="password">Senha</Label>
-                      <Input 
-                        id="password" 
-                        type="password" 
+                      <Input
+                        id="password"
+                        type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+                        onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                       />
-                      {loginError && <p className="text-xs text-destructive">Senha incorreta. Tente novamente.</p>}
+                      {loginError && (
+                        <p className="text-xs text-destructive">
+                          Senha incorreta. Tente novamente.
+                        </p>
+                      )}
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button type="submit" onClick={handleLogin}>Entrar</Button>
+                    <Button type="submit" onClick={handleLogin}>
+                      Entrar
+                    </Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
@@ -217,77 +240,112 @@ export function EventsCalendar() {
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="day" className="text-right">Dia</Label>
-                        <Input 
-                          id="day" 
-                          type="number" 
-                          placeholder="DD" 
-                          className="col-span-3" 
+                        <Label htmlFor="day" className="text-right">
+                          Dia
+                        </Label>
+                        <Input
+                          id="day"
+                          type="number"
+                          placeholder="DD"
+                          className="col-span-3"
                           value={newEvent.day}
-                          onChange={(e) => setNewEvent({...newEvent, day: e.target.value})}
+                          onChange={(e) =>
+                            setNewEvent({ ...newEvent, day: e.target.value })
+                          }
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="title" className="text-right">Título</Label>
-                        <Input 
-                          id="title" 
-                          placeholder="Nome do evento" 
+                        <Label htmlFor="title" className="text-right">
+                          Título
+                        </Label>
+                        <Input
+                          id="title"
+                          placeholder="Nome do evento"
                           className="col-span-3"
                           value={newEvent.title}
-                          onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+                          onChange={(e) =>
+                            setNewEvent({ ...newEvent, title: e.target.value })
+                          }
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="time" className="text-right">Horário</Label>
-                        <Input 
-                          id="time" 
-                          placeholder="14:00 - 16:00" 
+                        <Label htmlFor="time" className="text-right">
+                          Horário
+                        </Label>
+                        <Input
+                          id="time"
+                          placeholder="14:00 - 16:00"
                           className="col-span-3"
                           value={newEvent.time}
-                          onChange={(e) => setNewEvent({...newEvent, time: e.target.value})}
+                          onChange={(e) =>
+                            setNewEvent({ ...newEvent, time: e.target.value })
+                          }
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="location" className="text-right">Local</Label>
-                        <Input 
-                          id="location" 
-                          placeholder="Sala de Atividades" 
+                        <Label htmlFor="location" className="text-right">
+                          Local
+                        </Label>
+                        <Input
+                          id="location"
+                          placeholder="Sala de Atividades"
                           className="col-span-3"
                           value={newEvent.location}
-                          onChange={(e) => setNewEvent({...newEvent, location: e.target.value})}
+                          onChange={(e) =>
+                            setNewEvent({
+                              ...newEvent,
+                              location: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="audience" className="text-right">Público</Label>
-                        <Input 
-                          id="audience" 
-                          placeholder="Aberto a todos" 
+                        <Label htmlFor="audience" className="text-right">
+                          Público
+                        </Label>
+                        <Input
+                          id="audience"
+                          placeholder="Aberto a todos"
                           className="col-span-3"
                           value={newEvent.audience}
-                          onChange={(e) => setNewEvent({...newEvent, audience: e.target.value})}
+                          onChange={(e) =>
+                            setNewEvent({
+                              ...newEvent,
+                              audience: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="desc" className="text-right">Desc.</Label>
-                        <Textarea 
-                          id="desc" 
-                          placeholder="Detalhes do evento..." 
+                        <Label htmlFor="desc" className="text-right">
+                          Desc.
+                        </Label>
+                        <Textarea
+                          id="desc"
+                          placeholder="Detalhes do evento..."
                           className="col-span-3"
                           value={newEvent.description}
-                          onChange={(e) => setNewEvent({...newEvent, description: e.target.value})}
+                          onChange={(e) =>
+                            setNewEvent({
+                              ...newEvent,
+                              description: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </div>
                     <DialogFooter>
-                      <Button type="submit" onClick={handleAddEvent}>Salvar Evento</Button>
+                      <Button type="submit" onClick={handleAddEvent}>
+                        Salvar Evento
+                      </Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
-                
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  onClick={handleLogout} 
+
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={handleLogout}
                   title="Sair do modo administrativo"
                   className="rounded-full border-destructive/20 text-destructive hover:bg-destructive/10"
                 >
@@ -305,14 +363,18 @@ export function EventsCalendar() {
             </div>
           ) : (
             events.map((event) => (
-              <div 
-                key={event.id} 
+              <div
+                key={event.id}
                 className="group flex flex-col md:flex-row bg-white border border-border/60 rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden relative"
               >
                 {/* Date Block */}
                 <div className="bg-primary/5 min-w-[120px] flex flex-col items-center justify-center p-6 border-b md:border-b-0 md:border-r border-border/60">
-                  <span className="text-4xl font-bold text-primary tracking-tighter">{event.day}</span>
-                  <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">{event.month}.</span>
+                  <span className="text-4xl font-bold text-primary tracking-tighter">
+                    {event.day}
+                  </span>
+                  <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">
+                    {event.month}.
+                  </span>
                 </div>
 
                 {/* Content Block */}
@@ -322,9 +384,9 @@ export function EventsCalendar() {
                       {event.title}
                     </h3>
                     {isAdmin && (
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
+                      <Button
+                        variant="ghost"
+                        size="icon"
                         className="text-muted-foreground hover:text-destructive -mt-2 -mr-2"
                         onClick={() => handleDeleteEvent(event.id)}
                         title="Remover evento"
@@ -333,7 +395,7 @@ export function EventsCalendar() {
                       </Button>
                     )}
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Clock size={16} className="text-secondary" />
@@ -355,21 +417,27 @@ export function EventsCalendar() {
                 </div>
 
                 {/* Decorative Accent */}
-                <div className={`absolute top-0 left-0 w-1 h-full ${event.type === 'fixed' ? 'bg-secondary' : 'bg-primary'}`}></div>
+                <div
+                  className={`absolute top-0 left-0 w-1 h-full ${event.type === "fixed" ? "bg-secondary" : "bg-primary"}`}
+                ></div>
               </div>
             ))
           )}
         </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-           <div className="bg-accent/20 p-4 rounded-lg flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-secondary"></div>
-              <span className="text-sm text-foreground font-medium">Eventos Fixos (Semanais/Mensais)</span>
-           </div>
-           <div className="bg-accent/20 p-4 rounded-lg flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-primary"></div>
-              <span className="text-sm text-foreground font-medium">Eventos Especiais</span>
-           </div>
+          <div className="bg-accent/20 p-4 rounded-lg flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-secondary"></div>
+            <span className="text-sm text-foreground font-medium">
+              Eventos Fixos (Semanais/Mensais)
+            </span>
+          </div>
+          <div className="bg-accent/20 p-4 rounded-lg flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-primary"></div>
+            <span className="text-sm text-foreground font-medium">
+              Eventos Especiais
+            </span>
+          </div>
         </div>
       </div>
     </section>

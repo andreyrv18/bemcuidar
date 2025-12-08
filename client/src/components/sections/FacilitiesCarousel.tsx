@@ -4,25 +4,31 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback } from "react";
 
 // Images
-import roomImg from "@assets/generated_images/cozy_and_accessible_bedroom_for_seniors.png";
-import livingImg from "@assets/generated_images/seniors_socializing_in_a_bright_living_room.png";
-import gardenImg from "@assets/generated_images/garden_area_for_relaxation.png";
+import outdoorImg from "@assets/1-area-externa-socializacao-idosos-lar-repouso_1765195627642.jpg";
+import gardenImg from "@assets/2-idosos-jardim-ar-livre-contato-natureza_1765195627642.jpg";
+import diningImg from "@assets/3-refeitorio-idosos-alimentacao-saudavel-cuidados_1765195627643.jpg";
+import livingImg from "@assets/4-idosos-assistindo-tv-sala-estar-lar_1765195627643.jpg";
 
 const slides = [
   {
-    title: "Acomodações Confortáveis",
-    description: "Quartos adaptados, iluminados e decorados para se sentir em casa.",
-    image: roomImg,
+    title: "Áreas Externas",
+    description: "Espaço amplo e seguro para banhos de sol e atividades ao ar livre.",
+    image: outdoorImg,
   },
   {
-    title: "Áreas de Convivência",
-    description: "Espaços amplos para socialização, atividades e lazer em grupo.",
-    image: livingImg,
-  },
-  {
-    title: "Jardins e Natureza",
-    description: "Área externa arborizada perfeita para caminhadas e banhos de sol.",
+    title: "Contato com a Natureza",
+    description: "Jardim arborizado para momentos de tranquilidade e paz.",
     image: gardenImg,
+  },
+  {
+    title: "Alimentação Balanceada",
+    description: "Refeitório acolhedor com refeições preparadas com carinho e acompanhamento nutricional.",
+    image: diningImg,
+  },
+  {
+    title: "Convivência e Lazer",
+    description: "Sala de estar confortável para interação, TV e atividades em grupo.",
+    image: livingImg,
   },
 ];
 

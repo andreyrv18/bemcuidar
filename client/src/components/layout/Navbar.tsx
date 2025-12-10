@@ -75,12 +75,13 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button 
-              className="w-full bg-primary hover:bg-primary/90 text-white mt-2"
-             
-            >
-              Agendar Visita
-            </Button>
+            <a href="#contact" onClick={() => setIsOpen(false)}>
+              <Button
+                className="w-full bg-primary hover:bg-primary/90 text-white mt-2"
+              >
+                Agendar Visita
+              </Button>
+            </a>
           </div>
         </div>
       )}

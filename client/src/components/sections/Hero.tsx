@@ -46,13 +46,15 @@ export function Hero() {
                   Agendar uma Visita
                 </Button>
               </a>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 font-medium text-lg px-8 h-14 rounded-full backdrop-blur-sm"
-              >
-                Conhecer Estrutura
-              </Button>
+              <a href="#structure">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 font-medium text-lg px-8 h-14 rounded-full backdrop-blur-sm"
+                >
+                  Conhecer Estrutura
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>

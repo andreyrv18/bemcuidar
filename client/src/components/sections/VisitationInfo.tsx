@@ -1,7 +1,7 @@
 import { Calendar, Clock, HeartHandshake, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import IMG_20251116_WA0022 from "@assets/IMG-20251116-WA0022.jpg";
+import cafe_da_tarde_residentes from "../../../../assets/cafe-da-tarde-residentes.jpg";
 
 export function VisitationInfo() {
   const steps = [
@@ -69,6 +69,7 @@ export function VisitationInfo() {
             </div>
 
             <div className="mt-10">
+
               <a href="#contact">
                 <Button className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 h-12 text-base shadow-lg hover:shadow-primary/20 transition-all">
                   Agendar sua visita agora
@@ -81,8 +82,8 @@ export function VisitationInfo() {
             <div className="absolute -inset-4 bg-secondary/20 rounded-[2rem] rotate-3 z-0"></div>
             <div className="relative z-10 bg-white p-2 rounded-[1.5rem] shadow-xl overflow-hidden">
               <img
-                src={IMG_20251116_WA0022}
-                alt="Filha visitando mãe idosa"
+                src={cafe_da_tarde_residentes}
+                alt="Residentes da casa de repouso Bem Cuidar confraternizando durante uma refeição em uma mesa comunitária."
                 className="w-full h-[600px] object-cover rounded-[1.2rem]"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8 rounded-b-[1.2rem]">

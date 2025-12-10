@@ -4,10 +4,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback } from "react";
 
 // Images
-import outdoorImg from "@assets/1-area-externa-socializacao-idosos-lar-repouso_1765195627642.jpg";
-import gardenImg from "@assets/2-idosos-jardim-ar-livre-contato-natureza_1765195627642.jpg";
-import diningImg from "@assets/3-refeitorio-idosos-alimentacao-saudavel-cuidados_1765195627643.jpg";
-import livingImg from "@assets/4-idosos-assistindo-tv-sala-estar-lar_1765195627643.jpg";
+import outdoorImg from "@assets/1-area-externa-socializacao-idosos-lar-repouso.jpg";
+import gardenImg from "@assets/2-idosos-jardim-ar-livre-contato-natureza.jpg";
+import diningImg from "@assets/3-refeitorio-idosos-alimentacao-saudavel-cuidados.jpg";
+import livingImg from "@assets/4-idosos-assistindo-tv-sala-estar-lar.jpg";
 
 const slides = [
   {

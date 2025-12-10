@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroImage from "@assets/pixrl_1765195797324.png";
+import heroImage from "@assets/foto-capa-casa-bem-cuidar.png";
 
 export function Hero() {
   return (

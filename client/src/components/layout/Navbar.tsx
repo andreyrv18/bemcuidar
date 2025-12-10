@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "wouter";
-import { Menu, X, Phone, Clock, MapPin } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@assets/LOGO_1764981731572.jpg";
+import logo from "../../../../assets/logo-bemcuidar.jpg";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

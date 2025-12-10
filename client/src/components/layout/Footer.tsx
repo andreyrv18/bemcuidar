@@ -1,5 +1,5 @@
 import { MapPin, Phone, Mail, Instagram, Clock } from "lucide-react";
-import logo from "@assets/LOGO_1764981731572.jpg";
+import logo from "@assets/logo-bemcuidar.jpg";
 
 const Facebook = ({
   size = 24,
